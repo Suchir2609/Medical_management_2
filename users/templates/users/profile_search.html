@@ -1,0 +1,26 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <b>Results</b>
+    {% for patient in patientss %}
+    {% if patient.user.is_staff %}
+    <article class="media content-section">
+       <div class="media-body">
+          <h2 class="account-heading">Patient name - {{ patient.user.username }}</h2>
+          <p class="text-secondary">email address - {{ patient.user.email }}</p>
+          <b class="text-secondary">Staff Member</b>
+       </div>
+     </article>
+    {% else %}
+    <article class="media content-section">
+       <div class="media-body">
+           <h2 class="account-heading">Patient name - {{ patient.user.username }}</h2>
+          <p class="text-secondary">email address - {{ patient.user.email }}</p>
+           <p class="text-secondary">age - {{ patient.age }}</p>
+          <p class="text-secondary">gender - {{ patient.gender }}</p>
+          <p class="text-secondary">history - {{ patient.history_of_Illness }}</p>
+          <b class="text-secondary">Patient</b>
+       </div>
+    </article>
+    {% endif %}
+   {% endfor %}
+{% endblock content %}

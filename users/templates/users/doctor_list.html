@@ -1,0 +1,22 @@
+{% extends "users/base.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<b>Availible Doctors</b>
+
+<!--{% for doctor in doctors %}-->
+<!--    <article class="media content-section">-->
+<!--    <div class="media-body">-->
+<!--        <p class="article-content" > doctor name - {{ doctor.doctor_name }}</p>-->
+<!--        <p class="article-content">specialization - {{ doctor.specialization }}</p>-->
+<!--        <div class="form-group">-->
+<!--          <a class="btn btn-outline-info" href = "{% url 'doctor-update' doctor.id %}">Update doctor</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    </article>-->
+<!-- {% endfor %}-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <body>
+      {% render_table table %}
+    </body>
+{% endblock content %}

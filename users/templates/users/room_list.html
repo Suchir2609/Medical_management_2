@@ -1,0 +1,34 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <head>
+        <title>
+            Chat Rooms
+        </title>
+    </head>
+    <div class = "media body">
+        <b>What room would you like to enter</b>
+        </div>
+<br>
+    <div class="media body">
+        <input class="form-control me-2" id="room-name-input" type="text" size="100" placeholder="Enter room" >
+        <input id="room-name-submit" class="btn btn-secondary" type="button" value="Enter">
+<!--        <button id="room-name-submit" class="btn btn-secondary" type="button">Enter</button>-->
+    </div>
+<br><br>
+    <div class = "media body">
+        <p>Enter room 'staff' to chat with any staff member</p>
+    </div>
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+{%endblock content %}

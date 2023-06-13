@@ -1,0 +1,19 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <b>Accounts</b>
+    <br>
+ {% for account in accounts %}
+    <article class="media content-section">
+       <div class="media-body">
+           <p class="article-content" > patient name - {{ account.patient }}</p>
+           <p class="article-content">bill pending - {{ account.bill }}</p>
+           <p class="article-content">status - {{ account.status }}</p>
+           <div class="form-group">
+               {% if account.patient == user %}
+          <a class="btn btn-outline-info" href = "{% url 'account-update' account.id%}">Pay Bill</a>
+               {% endif %}
+        </div>
+       </div>
+     </article>
+   {% endfor %}
+{% endblock content %}

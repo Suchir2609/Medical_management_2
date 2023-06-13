@@ -1,0 +1,17 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <h1> Welcome to MedC portal </h1>
+    {% if user.is_staff %}
+    <a class="list-group-item list-group-item-light" href = "{% url 'staff-home'%}">continue to home page</a>
+    {% elif user.is_patient %}
+    <a class="list-group-item list-group-item-light" href = "{% url 'patient-home'%}">continue to home page</a>
+    {% else %}
+    <a class="list-group-item list-group-item-light" href = "{% url 'staff-login'%}">log in as staff</a>
+    <a class="list-group-item list-group-item-light" href = "{% url 'patient'%}">log in as patient</a>
+    <br>
+    <div>
+        <p>For new staff members</p>
+        <a href = "{% url 'register'%}">Register Here</a>
+    </div>
+    {% endif %}
+{% endblock content %}

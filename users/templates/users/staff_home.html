@@ -1,0 +1,20 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <h1> Welcome to staff-home </h1>
+    <br>
+    <b>Appointments due</b>
+    {% for appointment in appointments %}
+    <article class="media content-section">
+       <div class="media-body">
+           <b class="article-title">Appointment - {{ appointment.id }}</b>
+           <p class="article-content" > patient name - {{ appointment.patient_name }}</p>
+           <p class="article-content">problems - {{ appointment.problems }}</p>
+           <p class="article-content">doctor to be consulted - {{ appointment.doctors_wanted }}</p>
+           <p class="article-content">date - {{ appointment.date }}</p>
+           <p class="article-content">status - {{ appointment.status }}</p>
+           <a class="btn btn-outline-info" href =  "{% url 'appointment-status' appointment.id %}">Update appointment</a>
+       </div>
+     </article>
+   {% endfor %}
+
+{% endblock content %}

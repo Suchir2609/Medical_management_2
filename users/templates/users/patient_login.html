@@ -1,0 +1,7 @@
+{% extends "users/base.html" %}
+{% load socialaccount %}
+{% block content %}
+    <h1> Welcome to MedC portal </h1>
+    <a class="list-group-item list-group-item-light" href = "{% provider_login_url 'google' %}">Login With Google</a>
+<!--    <a href="{% provider_login_url 'google' %}">Login With Google</a>-->
+{% endblock content %}

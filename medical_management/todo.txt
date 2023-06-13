@@ -1,0 +1,8 @@
+-add table for doctors
+-create template for updating profile
+-DONE add date and time field in appointment section
+-add prescriptions in appointment
+-modify the chat page
+-add unread messages symbols
+-add update page for doctors
+-seperate flags sor staff and patients
