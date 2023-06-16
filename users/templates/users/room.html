@@ -5,9 +5,11 @@
         <input class="form-control me-2" id="chat-message-input" type="text" placeholder="type a message" size="100" >
         <button class="btn btn-secondary" id="chat-message-submit" type="button">Send</button>
         {{room_name|json_script:"room-name"}}
+        {{request.user.username|json_script:"username"}}
     </div>
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        const username = JSON.parse(document.getElementById('username').textContent);
         const chatSocket = new WebSocket(
             'ws://'
             + window.location.host
@@ -18,7 +20,7 @@
 
         chatSocket.onmessage = function(e) {
             const data =JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            document.querySelector('#chat-log').value += (data.message +  '------>sent by ' + data.username + '\n' + '\n');
         };
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
@@ -36,6 +38,7 @@
 
 
             chatSocket.send(JSON.stringify({
+                'username':username,
                 'message': message
             }));
             messageInputDom.value = '';

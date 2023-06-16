@@ -54,7 +54,7 @@ class AppointmentListViewPatient(ListView):
     context_object_name = 'appointments'
 
 
-def appointment_update(request,pk):
+def appointment_update(request, pk):
     appointment = get_object_or_404(Appointment, pk=pk)
     if request.method == 'POST':
         form = AppointmentUpdateForm(request.POST, instance=appointment)

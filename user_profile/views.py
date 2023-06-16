@@ -10,20 +10,27 @@ from django_tables2 import SingleTableView, SingleTableMixin
 from .tables import UserTable, DoctorTable
 
 
-def profile(request):
-    pfile = Profile.objects.get(user=request.user)
+def profile_update(request, pk):
+    # pfile = Profile.objects.get(user=request.user)
+    profile = get_object_or_404(Profile, pk=pk )
     if request.method == 'POST':
-        p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        p_form = ProfileUpdateForm(request.POST, instance=profile)
         if p_form.is_valid():
             p_form.save()
             messages.success(request, f'Your Account has been successfully updated! ')
-            return redirect('patient-profile')
+            return redirect('patient-view')
     else:
-        p_form = ProfileUpdateForm()
-    context = {'pfile': pfile, 'p_form':p_form}
+        p_form = ProfileUpdateForm(instance=profile)
+    context = {'p_form': p_form}
 
+    return render(request, 'users/patient_profile_update.html', context)
+
+
+def profile_view(request):
+    pfile = Profile.objects.get(user=request.user)
+
+    context = {'pfile':pfile}
     return render(request, 'users/patient_profile.html', context)
-
 
 class AccountCreateView(LoginRequiredMixin, CreateView):
     model = Account

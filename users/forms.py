@@ -6,13 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-
-    def clean(self):
-        cleaned_data = super().clean()
-        is_patient = cleaned_data.get('is_patient')
-        if is_patient is True:
-            cleaned_data['is_patient'] = False
-        return cleaned_data
+    is_patient = forms.BooleanField(disabled=True, required=False, widget=forms.HiddenInput)
 
     def clean_is_staff(self):
         is_staff = self.cleaned_data.get('is_staff')
@@ -24,9 +18,16 @@ class UserRegisterForm(UserCreationForm):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
         self.fields['is_staff'].required = True
 
+    def clean(self):
+        cleaned_data = super().clean()
+        is_patient = cleaned_data.get('is_patient')
+        if is_patient is True:
+            cleaned_data['is_patient'] = False
+        return cleaned_data
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'is_staff']
+        fields = ['username', 'email', 'password1', 'password2', 'is_staff', 'is_patient']
 
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -47,7 +48,7 @@ class AppointmentStatusForm(forms.ModelForm):
 
     class Meta:
         model = Appointment
-        fields = ['status']
+        fields = ['status', 'prescription']
 
 
 class DoctorCreationForm(forms.ModelForm):

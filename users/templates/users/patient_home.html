@@ -1,7 +1,6 @@
 {% extends "users/base.html" %}
 {% block content %}
     <h1> Welcome to patients-home </h1>
-    <br>
     <b>Appointments due</b>
     {% for appointment in appointments %}
     {% if appointment.patient_name == user %}
@@ -13,6 +12,7 @@
            <p class="article-content">doctor to be consulted - {{ appointment.doctors_wanted }}</p>
            <p class="article-content">date of appointment - {{ appointment.date }}</p>
            <p class="article-content">status - {{ appointment.status }}</p>
+           <p class="article-content">prescription - {{ appointment.prescription }}</p>
            <div class="form-group">
           <a class="btn btn-outline-info" href =  "{% url 'appointment-update' appointment.id %}">Update appointment</a>
                {% endif %}

@@ -39,7 +39,7 @@
                     <a class="nav-item nav-link" href="{% url 'user-tables' %}">View Users</a>
                 {% elif user.is_patient %}
                     <a class="nav-item nav-link" href="{% url 'logout'%}">Logout</a>
-                    <a class="nav-item nav-link" href="{% url 'patient-profile' %}">profile</a>
+                    <a class="nav-item nav-link" href="{% url 'patient-view' %}">profile</a>
                     <a class="nav-item nav-link" href="{% url 'patient-home' %}">Home</a>
                 {% endif %}
             </div>

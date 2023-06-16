@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     is_staff = models.BooleanField('Is staff', default=False)
-    is_patient = models.BooleanField('Is patient',default=True,)
+    is_patient = models.BooleanField('Is patient', default=True)
 
 
 class Doctor(models.Model):
@@ -25,7 +25,9 @@ class Appointment(models.Model):
     )
     status = models.CharField(max_length=50, default='pending',choices=CHOICES )
     date = models.DateField(null=True, default=None)
+    prescription = models.TextField(default ='--no prescription uploaded yet--')
 
-
+    def __str__(self):
+        return f'Appontment {self.id}'
 
 

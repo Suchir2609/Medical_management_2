@@ -12,6 +12,7 @@
            <p class="article-content">doctor to be consulted - {{ appointment.doctors_wanted }}</p>
            <p class="article-content">date - {{ appointment.date }}</p>
            <p class="article-content">status - {{ appointment.status }}</p>
+           <p class="article-content">prescription - {{ appointment.prescription }}</p>
            <a class="btn btn-outline-info" href =  "{% url 'appointment-status' appointment.id %}">Update appointment</a>
        </div>
      </article>
